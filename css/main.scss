@@ -1,0 +1,259 @@
+---
+---
+@import "uno";
+@import "tables";
+@import "monokai";
+@import "timeline";
+
+/* default */
+h2 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  color: #fff;
+}
+
+/* Modifications */
+pre.highlight,
+.highlight pre {
+  padding: 10px;
+}
+
+pre.highlight code,
+.highlight pre code {
+  white-space: pre-wrap;
+}
+
+.btn,
+.navigation__item a {
+  margin: 5px 0;
+  white-space: nowrap;
+}
+
+.pagination__page-number {
+  display: inline-block;
+  padding: 10px;
+}
+
+.categories a,
+.tags a {
+  border: 1px solid #e25440;
+  border-radius: 20px;
+  color: #e25440;
+  display: inline-block;
+  font-size: 12px;
+  margin: 5px 0;
+  padding: 5px 10px;
+  text-shadow: none;
+  white-space: nowrap;
+}
+
+.post-meta__tags {
+  font-size: 12px;
+  padding: 0 5px;
+}
+
+.footer__copyright {
+    margin: 0 20px 10px;
+}
+
+.user-image {
+  margin-bottom: 1.2em;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border: 3px solid #fff;
+  border-radius:100%;
+}
+
+/* custom */
+// 커리어 영역
+.circle {
+  width: 75px;
+  height: 75px;
+  background-color: #4CAF50; /* Changed to a nice green */
+  border-radius: 50%;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; /* Color of the icon */
+}
+
+.circle i {
+  font-size: 30px; /* Size of the icon, adjust as needed */
+  padding: 23px;
+  display: inline-block; /* Allow transformation */
+  transition: transform 0.5s;
+  border-radius: 50%;
+}
+
+.circle i:hover {
+  animation: shake 0.5s; /* Trigger the shake animation on hover */
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.tooltip {
+  /* ... existing styles ... */
+  visibility: hidden;
+  white-space: nowrap;
+  position: absolute;
+  z-index: 1001;
+  padding: 10px 15px;
+  bottom: 125%;
+  left: 50%;
+  transform: translate(-50%, -10px); /* Adjust to align the tooltip */
+  transition: opacity 0.3s, visibility 0s linear 0s; /* 0초 후에 말풍선의 투명도를 조절합니다. */
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 6px;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin-left: -5px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #4CAF50 transparent transparent transparent;
+}
+
+.circle:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s; /* hover 시 바로 말풍선을 보여줍니다. */
+}
+
+// 커리어 팝업
+.popup {
+  display: none; /* 기본적으로 팝업은 보이지 않게 설정 */
+  position: fixed;
+  z-index: 1000;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0); /* 팝업 뒤 배경색 */
+  background-color: rgba(0,0,0,0.4); /* 팝업 뒤 배경색 투명도 조절 */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* Internet Explorer/Edge */
+  user-select: none;         /* Non-prefixed version, currently supported by Chrome, Opera, and Edge */
+}
+
+.popup-content {
+  display: flex;
+  max-height: 75%; /* 최대 높이 설정 */
+  overflow-y: hidden; /* 세로 스크롤바 자동으로 생성 */
+  position: relative;
+  border-radius: 16px;
+  background-color: #312f2f;
+  margin: auto;
+  // border: 1px solid #888;
+  width: 40%; /* 팝업 너비 조절 */
+  box-shadow: 0 4px 16px 0 rgba(0,0,0,0.6);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+.popup-header {
+  flex-shrink: 0;
+  position: absolute;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #312f2f; /* 헤더 배경색 */
+  padding: 10px 32px; /* 헤더 패딩 */
+  text-align: left;
+}
+
+.popup-body {
+  flex-grow: 1;
+	padding-right: 12px;
+  margin-top: 75px; /* 헤더 높이보다 조금 더 크게 설정 */
+  margin-left: 10px;
+  overflow-y: auto; /* 내용이 넘칠 경우 스크롤 생성 */
+  //height: calc(100% - 60px); /* 헤더 영역을 제외한 높이 */
+  //max-height: 620px; /* 최대 높이 설정으로 변경 가능 */
+  color: #fff;
+}
+
+/* 팝업 내부의 스크롤바 스타일링 */
+.popup-body::-webkit-scrollbar {
+  width: 12px; /* 스크롤바 너비 */
+}
+
+/* 스크롤바 트랙 스타일링 */
+.popup-body::-webkit-scrollbar-track {
+  border-radius: 10px; /* 트랙 둥근 모서리 */
+}
+
+/* 스크롤바 썸 스타일링 */
+.popup-body::-webkit-scrollbar-thumb {
+  background: #888; /* 썸 배경 색상 */
+  border-radius: 10px; /* 썸 둥근 모서리 */
+}
+
+/* 스크롤바 썸에 마우스 호버 시 스타일링 */
+.popup-body::-webkit-scrollbar-thumb:hover {
+  background: #555; /* 호버 시 썸 배경 색상 */
+}
+
+/* 팝업 열릴 때 애니메이션 효과 */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 50px;
+  margin-right: 10px;
+  font-weight: bold;
+  cursor: pointer; /* 마우스 오버 시 커서 변경 */
+  padding-bottom: 5px;
+}
+
+.close:hover,
+.close:focus {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.experience-list {
+  list-style-type: none;
+}
+
+.work-list {
+  list-style-type: disc;
+}

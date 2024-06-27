@@ -1,0 +1,15 @@
+# projects section data
+#- name: A Wordle Sover as Blazer WebAssembly
+#  gh_user: tzuehlke
+#  repo: wordle-solver
+#  img: https://user-images.githubusercontent.com/32843441/150650516-1998923f-b836-4256-99b0-a5e3e86a3322.png
+
+- name: Menu Recommendation Service
+  gh_user: enxec
+  repo: obob
+  img: ../images/obob-logo.png
+
+- name: Development Support App
+  gh_user: enxec
+  repo: ByteFactory
+  img: ../images/bf-logo.png
