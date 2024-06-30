@@ -1,15 +1,15 @@
 # Site settings
-title: Enxec
+title: 이원모
 description: 'Business Card Page'
 url: 'https://enxec.businesscard.nbyte.kr'
 baseurl: ''
-profilepic: '/images/enxec.png'
+profilepic: '/images/profile.png'
 bkimage: '/images/bk1.jpg'
 google_analytics: UA-XXXXXX-X
 font_awesome: '44a86f330f.js'
 
 author:
-  name: 'enxec'
+  name: '이원모'
   email: dev21mo@gmail.com
 #  mastodon: tzuehlke@mstdn.social
 #  twitter_username: thomzuehlke
